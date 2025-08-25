@@ -3,6 +3,12 @@ import { WishItem } from '../shared/models/wishItem';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+const filters = [
+  (item: WishItem) => item,
+  (item: WishItem) => !item.isComplete,
+  (item: WishItem) => !item.isComplete,
+];
+
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -17,22 +23,14 @@ export class AppComponent {
     new WishItem('Find grass that cuts itself'),
   ];
 
-  listFilter: string = '0';
+  listFilter: any = '0';
 
   newWishText = '';
 
   title = 'wishlist';
 
   get visibleItems(): WishItem[] {
-    let value = this.listFilter;
-
-    if (value === '0') {
-      return this.items;
-    } else if (value === '1') {
-      return this.items.filter((item) => !item.isCompleted);
-    } else {
-      return this.items.filter((items) => items.isCompleted);
-    }
+    return this.items.filter(filters[this.listFilter]);
   }
 
   addNewWish() {
@@ -44,7 +42,7 @@ export class AppComponent {
   }
 
   toggleItem(item: WishItem) {
-    item.isCompleted = !item.isCompleted;
+    item.isComplete = !item.isComplete;
     console.log(item);
   }
 }

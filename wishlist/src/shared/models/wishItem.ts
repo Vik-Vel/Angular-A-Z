@@ -1,3 +1,3 @@
-export class WishItem{
-  constructor(public wishText : string, public isCompleted : boolean = false){}
+export class WishItem {
+  constructor(public wishText: string, public isComplete: boolean = false) {}
 }
