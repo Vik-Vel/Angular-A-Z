@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { WishItem } from '../shared/models/wishItem';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { WishListComponent } from './wish-list/wish-list.component';
 
 const filters = [
   (item: WishItem) => item,
@@ -12,7 +13,7 @@ const filters = [
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [NgFor, NgIf, NgClass, FormsModule],
+  imports: [NgFor, NgIf, NgClass, FormsModule, WishListComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -39,10 +40,5 @@ export class AppComponent {
 
     //todo - add wish to items array
     //clear the textbox
-  }
-
-  toggleItem(item: WishItem) {
-    item.isComplete = !item.isComplete;
-    console.log(item);
   }
 }
